@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Home;
+use App\Http\Controllers\Algorithm;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,5 +12,7 @@ use App\Http\Controllers\Home;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('/', Home::class);
+Route::resource('/', Algorithm::class);
 // Route::get('/', [Home::class, 'home'])->name('home');
+Route::post('/algorithm/upload', [Algorithm::class, 'upload']);
+Route::get('/result', [Algorithm::class, 'result']);
