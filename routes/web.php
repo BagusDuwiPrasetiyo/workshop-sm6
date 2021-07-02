@@ -13,9 +13,10 @@ use App\Http\Controllers\Training;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::resource('/', Algorithm::class);
 Route::resource('/training', Training::class);
 // Route::get('/', [Home::class, 'home'])->name('home');
-Route::post('/training/', [Training::class, 'store'])->name('Training.store');
+Route::post('/training', [Training::class, 'store'])->name('Training.store');
 Route::post('/algorithm/upload', [Algorithm::class, 'upload']);
 Route::get('/result', [Algorithm::class, 'result']);

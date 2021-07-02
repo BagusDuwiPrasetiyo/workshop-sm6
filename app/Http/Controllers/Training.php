@@ -23,31 +23,31 @@ class Training extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     public function store(Request $request)
     {
-        parse_str($request->data, $request);
 
-        $create_training = [
-            'l_core' => $request['l_core'],
-            'l_surf' => $request['l_surf'],
-            'l_o2' => $request['l_o2'],
-            'l_bp' => $request['l_bp'],
-            'surf_stbl' => $request['surf_stbl'],
-            'core_stbl' => $request['core_stbl'],
-            'bp_stbl' => $request['bp_stbl'],
-            'comfort' => $request['comfort'],
-            'decision_adm_decs' => $request['decision_adm_decs'],
-        ];
+        try {
 
-        $save_user = Patient_Model::create($create_training);
-        
-        if ($save_user) {
-        	return 'success';
-        }else{
-        	return '!success';
+            $create_training = [
+                'l_core' => $request->l_core,
+                'l_surf' => $request->l_surf,
+                'l_o2' => $request->l_o2,
+                'l_bp' => $request->l_bp,
+                'surf_stbl' => $request->surf_stbl,
+                'core_stbl' => $request->core_stbl,
+                'bp_stbl' => $request->bp_stbl,
+                'comfort' => $request->comfort,
+                'decision_adm_decs' => $request->decision_adm_decs,
+            ];
+
+            $save_user = Patient_Model::create($create_training);
+        } catch (Exception $e) {
+
+            return $e;
         }
 
+        return 'success';
     }
 
     /**
