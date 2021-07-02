@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Algorithm;
+use App\Http\Controllers\Training;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,8 @@ use App\Http\Controllers\Algorithm;
 |
 */
 Route::resource('/', Algorithm::class);
+Route::resource('/training', Training::class);
 // Route::get('/', [Home::class, 'home'])->name('home');
+Route::post('/training/', [Training::class, 'store'])->name('Training.store');
 Route::post('/algorithm/upload', [Algorithm::class, 'upload']);
 Route::get('/result', [Algorithm::class, 'result']);
