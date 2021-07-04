@@ -9,8 +9,8 @@ class Testing extends Controller
 {
     public function index()
     {
-    	$patient = Patient_Model::all();
-    	// return $patient;
-        return view('testing', compact('patient'));
+        $patient = Patient_Model::all();
+        // return $patient;
+        return view('Testing', compact('patient'));
     }
 }

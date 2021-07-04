@@ -34,101 +34,86 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>L CORE</label>
-                                <select name="l_core" id="l_core" class="form-control select2" required
-                                    style="width: 100%;">
-                                    <option value="">--Pilih--</option>
-                                    <option value="high">HIGH</option>
-                                    <option value="mid">MID</option>
-                                    <option value="low">LOW</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>L SURF</label>
-                                <select name="l_surf" id="l_surf" class="form-control select2" required
-                                    style="width: 100%;">
-                                    <option value="">--Pilih--</option>
-                                    <option value="high">HIGH</option>
-                                    <option value="mid">MID</option>
-                                    <option value="low">LOW</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>L 02</label>
-                                <select name="l_o2" id="l_o2" class="form-control select2" required
-                                    style="width: 100%;">
-                                    <option value="">--Pilih--</option>
-                                    <option value="excellent">EXCELLENT</option>
-                                    <option value="good">GOOD</option>
-                                    <option value="fair">FAIR</option>
-                                    <option value="poor">POOR</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>L BP</label>
-                                <select name="l_bp" id="l_bp" class="form-control select2" required
-                                    style="width: 100%;">
-                                    <option value="">--Pilih--</option>
-                                    <option value="high">HIGH</option>
-                                    <option value="mid">MID</option>
-                                    <option value="low">LOW</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>SURF STBL</label>
-                                <select name="surf_stbl" id="surf_stbl" class="form-control select2" required
-                                    style="width: 100%;">
-                                    <option value="">--Pilih--</option>
-                                    <option value="stable">STABLE</option>
-                                    <option value="mod-stable">MOD-STABLE</option>
-                                    <option value="unstable">UNSTABLE</option>
-                                </select>
-                            </div>
+                        <div class="col-md-12">
+                            <form action="{{url('/algorithm/upload')}}" method="POST" id="formData">
+                                <div class="row">
+                                    <div class="form-group col-md-3">
+                                        <label>L CORE</label>
+                                        <select name="l_core" id="l_core" class="form-control select2" required style="width: 100%;">
+                                            <option value="" selected>--Pilih--</option>
+                                            <option value="high">HIGH</option>
+                                            <option value="mid">MID</option>
+                                            <option value="low">LOW</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>L SURF</label>
+                                        <select name="l_surf" id="l_surf" class="form-control select2" required style="width: 100%;">
+                                            <option value="">--Pilih--</option>
+                                            <option value="high">HIGH</option>
+                                            <option value="mid">MID</option>
+                                            <option value="low">LOW</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>L 02</label>
+                                        <select name="l_o2" id="l_o2" class="form-control select2" required style="width: 100%;">
+                                            <option value="">--Pilih--</option>
+                                            <option value="excellent">EXCELLENT</option>
+                                            <option value="good">GOOD</option>
+                                            <option value="fair">FAIR</option>
+                                            <option value="poor">POOR</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>L BP</label>
+                                        <select name="l_bp" id="l_bp" class="form-control select2" required style="width: 100%;">
+                                            <option value="">--Pilih--</option>
+                                            <option value="high">HIGH</option>
+                                            <option value="mid">MID</option>
+                                            <option value="low">LOW</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-3">
+                                        <label>SURF STBL</label>
+                                        <select name="surf_stbl" id="surf_stbl" class="form-control select2" required style="width: 100%;">
+                                            <option value="">--Pilih--</option>
+                                            <option value="stable">STABLE</option>
+                                            <option value="mod-stable">MOD-STABLE</option>
+                                            <option value="unstable">UNSTABLE</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>CORE STBL</label>
+                                        <select name="core_stbl" id="core_stbl" class="form-control select2" required style="width: 100%;">
+                                            <option value="">--Pilih--</option>
+                                            <option value="stable">STABLE</option>
+                                            <option value="mod-stable">MOD-STABLE</option>
+                                            <option value="unstable">UNSTABLE</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>BP STBL</label>
+                                        <select name="bp_stbl" id="bp_stbl" class="form-control select2" required style="width: 100%;">
+                                            <option value="">--Pilih--</option>
+                                            <option value="stable">STABLE</option>
+                                            <option value="mod-stable">MOD-STABLE</option>
+                                            <option value="unstable">UNSTABLE</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>COMFORT</label>
+                                        <input type="number" name="comfort" id="comfort" class="form-control" required min="1" max="20">
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <!-- /.col -->
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>CORE STBL</label>
-                                <select name="core_stbl" id="core_stbl" class="form-control select2" required
-                                    style="width: 100%;">
-                                    <option value="">--Pilih--</option>
-                                    <option value="stable">STABLE</option>
-                                    <option value="mod-stable">MOD-STABLE</option>
-                                    <option value="unstable">UNSTABLE</option>
-                                </select>
-                            </div>
-                            <!-- /.form-group -->
-                            <div class="form-group">
-                                <label>BP STBL</label>
-                                <select name="bp_stbl" id="bp_stbl" class="form-control select2" required
-                                    style="width: 100%;">
-                                    <option value="">--Pilih--</option>
-                                    <option value="stable">STABLE</option>
-                                    <option value="mod-stable">MOD-STABLE</option>
-                                    <option value="unstable">UNSTABLE</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>COMFORT</label>
-                                <input type="number" name="comfort" id="comfort" value="1" class="form-control" required
-                                    min="1" max="20">
-                            </div>
-                            <div class="form-group">
-                                <label>DECISION ADM DESC</label>
-                                <select name="decision_adm_decs" id="decision_adm_decs" class="form-control select2"
-                                    style="width: 100%;" required>
-                                    <option selected="selected">A</option>
-                                    <option>S</option>
-                                </select>
-                            </div>
-                        </div>
-                        <!-- /.col -->
                     </div>
                 </div>
                 <div class="card-footer">
-                <button type="submit" class="btn btn-success float-right">Proses</button>
+                    <button type="button" id="submit" class="btn btn-success float-right">Proses</button>
                 </div>
                 <!-- /.row -->
             </div>
@@ -140,5 +125,55 @@
 @endsection
 @push('content-js')
 <script>
+    $('#formData').validate({
+        messages: {
+            l_core: 'l core harus dipilih',
+            l_surf: 'l surf harus dipilih',
+            l_o2: 'l o2 harus dipilih',
+            l_bp: 'l bp harus dipilih',
+            surf_stbl: 'surf stbl harus dipilih',
+            core_stbl: 'core stbl harus dipilih',
+            bp_stbl: 'bp stbl harus dipilih',
+            comfort: 'comfort harus diisi',
+            decision_adm_decs: 'decision adm decs harus dipilih',
+        },
+        highlight: function(e) {
+            $(e).closest('.form-control').addClass('is-invalid');
+        },
+        unhighlight: function(e) {
+            $(e).closest('.form-control').removeClass('is-invalid');
+            $(e).closest('.form-control').addClass('is-valid');
+        },
+        success: function(e) {
+            $(e).closest('.form-control').removeClass('is-invalid');
+            $(e).closest('.form-control').addClass('is-valid');
+        },
+    });
+
+    $('#submit').on('click', function() {
+        if ($('#formData').valid()) {
+            $.ajax({
+                url: $('#formData').attr('action'),
+                type: $('#formData').attr('method'),
+                data: $('#formData').serialize(),
+                success: function(data) {
+                    if (data == 'success') {
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Berhasil Disimpan'
+                        });
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 750);
+                    } else {
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'Gagal Disimpan'
+                        });
+                    }
+                }
+            });
+        }
+    })
 </script>
 @endpush

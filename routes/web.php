@@ -24,6 +24,9 @@ Route::get('/training/delete/{kode}', [Training::class, 'destroy']);
 Route::post('/training/', [Training::class, 'store'])->name('Training.store');
 Route::put('/training/', [Training::class, 'update'])->name('Training.update');
 
+//data testing
+Route::resource('/testing', Testing::class);
+
 // data testing
 Route::resource('/testing', Testing::class);
 
