@@ -145,6 +145,14 @@
                 </p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{ url('stored_data') }}" class="nav-link">
+                <i class="nav-icon fas fa-history"></i>
+                <p>
+                  Stored Test Data
+                </p>
+              </a>
+            </li>
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -204,7 +212,15 @@
 
   <!-- Jquery Validate -->
   <script src="{{asset('template')}}/plugins/jquery-validation/jquery.validate.js"></script>
-  <script src="{{asset('template')}}/plugins/jquery-validation/localization/messages_id.js"></script>
+  <!-- <script src="{{asset('template')}}/plugins/jquery-validation/localization/messages_id.js"></script> -->
+  <script>
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+  </script>
   @stack('content-js')
 </body>
 

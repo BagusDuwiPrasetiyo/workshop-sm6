@@ -21,14 +21,15 @@ Route::resource('/', Algorithm::class);
 Route::resource('/training', Training::class);
 Route::get('/training/get_data/{kode}', [Training::class, 'getUserData']);
 Route::get('/training/delete/{kode}', [Training::class, 'destroy']);
-Route::post('/training/', [Training::class, 'store'])->name('Training.store');
-Route::put('/training/', [Training::class, 'update'])->name('Training.update');
+Route::post('/training', [Training::class, 'store'])->name('Training.store');
+Route::put('/training', [Training::class, 'update'])->name('Training.update');
 
 //data testing
 Route::resource('/testing', Testing::class);
+Route::post('/testing', [Testing::class, 'store'])->name('Testing.store');
 
-// data testing
-Route::resource('/testing', Testing::class);
+//saved testing
+Route::get('/stored_data', [Testing::class, 'saved']);
 
 Route::post('/algorithm/upload', [Algorithm::class, 'upload']);
 Route::get('/result', [Algorithm::class, 'result']);

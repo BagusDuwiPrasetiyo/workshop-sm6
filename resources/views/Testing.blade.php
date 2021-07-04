@@ -1,6 +1,5 @@
 @extends('Templates')
 @section('content')
-@include('Createtraining')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -19,15 +18,13 @@
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
-
-
     <section class="content">
         <div class="container-fluid">
             <!-- Info boxes -->
-            <div class="card">
+            <div class="card" id="formTesting">
                 <div class="card-header">
                     <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <button type="button" class="btn btn-tool btnTesting" data-card-widget="collapse">
                             <i class="fas fa-minus"></i>
                         </button>
                     </div>
@@ -36,6 +33,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <form action="{{url('/algorithm/upload')}}" method="POST" id="formData">
+                                {{@csrf_field()}}
                                 <div class="row">
                                     <div class="form-group col-md-3">
                                         <label>L CORE</label>
@@ -105,18 +103,22 @@
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>COMFORT</label>
-                                        <input type="number" name="comfort" id="comfort" class="form-control" required min="1" max="20">
+                                        <input type="number" name="comfort" id="comfort" class="form-control" required>
                                     </div>
+                                    <input type="hidden" id="resultA" name="resultA">
+                                    <input type="hidden" id="resultS" name="resultS">
+                                    <input type="hidden" id="result" name="result">
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button type="button" id="submit" class="btn btn-success float-right">Proses</button>
+                    <button type="button" id="submit" class="btn btn-success float-right">Process</button>
                 </div>
                 <!-- /.row -->
             </div>
+
             <!--/. container-fluid -->
     </section>
 
@@ -126,6 +128,7 @@
 @push('content-js')
 <script>
     $('#formData').validate({
+<<<<<<< Updated upstream
         messages: {
             l_core: 'l core harus diChoose',
             l_surf: 'l surf harus diChoose',
@@ -136,6 +139,13 @@
             bp_stbl: 'bp stbl harus diChoose',
             comfort: 'comfort harus diisi',
             decision_adm_decs: 'decision adm decs harus diChoose',
+=======
+        rules: {
+            comfort: {
+                min: 1,
+                max: 20
+            }
+>>>>>>> Stashed changes
         },
         highlight: function(e) {
             $(e).closest('.form-control').addClass('is-invalid');
@@ -157,23 +167,84 @@
                 type: $('#formData').attr('method'),
                 data: $('#formData').serialize(),
                 success: function(data) {
-                    if (data == 'success') {
-                        Toast.fire({
-                            icon: 'success',
-                            title: 'Berhasil Disimpan'
-                        });
-                        setTimeout(function() {
-                            window.location.reload();
-                        }, 750);
-                    } else {
-                        Toast.fire({
-                            icon: 'error',
-                            title: 'Gagal Disimpan'
-                        });
-                    }
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'The result has been processed successfully'
+                    });
+
+                    $('.btnTesting').trigger('click');
+                    $('#resultA').val(data.a);
+                    $('#resultS').val(data.s);
+                    $('#result').val(data.result);
+                    $('#cardResult').remove();
+                    $('#formTesting').after(
+                        `<div class="card" id="cardResult">
+                            <div class="card-header">
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool btnTesting" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                        <th>Result A (Pasien sent to general hospital floor)</th>
+                                        <td>` + data.a + `</td>
+                                        </tr>
+                                        <tr>
+                                        <th>Result S (Pasien prepared to go home)</th>
+                                        <td>` + data.s + `</td>
+                                        </tr>
+                                        <tr>
+                                        <th>Decission</th>
+                                        <td>` + data.result + `</td>
+                                        </tr>
+                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                            <button type="button" onclick="save()" class="btn btn-success float-right">Save</button>
+                            <button type="button" class="btn btn-warning float-right" onclick="reset()">Reset</button>
+                            </div>
+                        </div>`
+                    );
                 }
             });
         }
     })
+
+    var reset = function() {
+        window.location.reload();
+    }
+
+    var save = function() {
+
+        $.ajax({
+            url: "{{url('/testing')}}",
+            type: $('#formData').attr('method'),
+            data: $('#formData').serialize(),
+            success: function(data) {
+                if (data == 'success') {
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Berhasil Disimpan'
+                    });
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 750);
+                } else {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Gagal Disimpan'
+                    });
+                }
+            }
+        });
+
+    }
 </script>
 @endpush

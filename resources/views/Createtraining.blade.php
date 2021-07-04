@@ -14,22 +14,38 @@
                     <div class="section_1">
                         <div class="form-group">
                             <label>L CORE</label>
+<<<<<<< Updated upstream
                             <select name="l_core" id="l_core" class="form-control select2" required
                                 style="width: 100%;">
                                 <option value="">--Choose--</option>
                                 <option value="high">HIGH > 37</option>
                                 <option value="mid">MID <= 37 and >= 36</option>
                                 <option value="low">LOW < 36</option>
+=======
+                            <select name="l_core" id="l_core" class="form-control select2" required style="width: 100%;">
+                                <option value="">--Pilih--</option>
+                                <option value="high">HIGH</option>
+                                <option value="mid">MID</option>
+                                <option value="low">LOW</option>
+>>>>>>> Stashed changes
                             </select>
                         </div>
                         <div class="form-group">
                             <label>L SURF</label>
+<<<<<<< Updated upstream
                             <select name="l_surf" id="l_surf" class="form-control select2" required
                                 style="width: 100%;">
                                 <option value="">--Choose--</option>
                                 <option value="high">HIGH > 36.5 </option>
                                 <option value="mid">MID <= 36.5 and >= 35 </option>
                                 <option value="low">LOW < 35</option>
+=======
+                            <select name="l_surf" id="l_surf" class="form-control select2" required style="width: 100%;">
+                                <option value="">--Pilih--</option>
+                                <option value="high">HIGH</option>
+                                <option value="mid">MID</option>
+                                <option value="low">LOW</option>
+>>>>>>> Stashed changes
                             </select>
                         </div>
                         <div class="form-group">
@@ -82,13 +98,11 @@
                         </div>
                         <div class="form-group">
                             <label>COMFORT</label>
-                            <input type="number" name="comfort" id="comfort" value="1" class="form-control" required min="1"
-                                max="20">
+                            <input type="number" name="comfort" id="comfort" value="1" class="form-control" required min="1" max="20">
                         </div>
                         <div class="form-group">
                             <label>DECISION ADM DESC</label>
-                            <select name="decision_adm_decs" id="decision_adm_decs" class="form-control select2"
-                                style="width: 100%;" required>
+                            <select name="decision_adm_decs" id="decision_adm_decs" class="form-control select2" style="width: 100%;" required>
                                 <option selected="selected">A</option>
                                 <option>S</option>
                             </select>
@@ -98,8 +112,7 @@
             </form>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-danger close_modal" data-dismiss="modal">BATAL</button>
-                <button type="button" class="btn btn-primary next_section"
-                    onclick="script_create.addSection()">LANJUT</button>
+                <button type="button" class="btn btn-primary next_section" onclick="script_create.addSection()">LANJUT</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -108,7 +121,7 @@
 </div>
 @push('content-js')
 <script>
-    $('#comfort').on('keyup', function () {
+    $('#comfort').on('keyup', function() {
         var regex = /^[0-9]+$/;
         if (regex.test(this.value) !== true) {
             this.value = this.value.replace(/[^0-9]+/, '');
@@ -117,7 +130,7 @@
         }
     });
 
-    $('#comfort').on('keyup', function () {
+    $('#comfort').on('keyup', function() {
         var max = parseInt($(this).attr('max'));
         var min = parseInt($(this).attr('min'));
         if ($(this).val() > max) {
@@ -127,7 +140,7 @@
         }
     });
 
-    $('#decision_adm_decs').on('keyup', function () {
+    $('#decision_adm_decs').on('keyup', function() {
         var regex = /^[a / s A / S]+$/;
         if (regex.test(this.value) !== true) {
             this.value = this.value.replace(/[^a-sA-S]+/, '');
@@ -137,31 +150,24 @@
     });
     var regex = /^[a-z A-Z]+$/;
 
-    var script_create = function () {
+    var script_create = function() {
 
         let show = false;
 
         var check = true;
 
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000
-        });
-
-        var addSection = function () {
+        var addSection = function() {
 
             if (show) {
                 show = false;
 
-                $('.section_2').hide('slow', function () {
+                $('.section_2').hide('slow', function() {
                     $(this).attr('hidden', true);
                 });
                 $('.back_section').remove();
                 $('.next_section').before(
                     '<button type="button" class="btn btn-danger close_modal" data-dismiss="modal" >BATAL</button>'
-                    );
+                );
                 $('.next_section').removeClass('btn-success simpan').addClass('btn-primary').text('LANJUT')
                     .attr('type', 'button').attr('onclick', 'script_create.addSection()');
 
@@ -170,13 +176,13 @@
 
             } else {
                 if ($('#form_data').valid()) {
-                    $('.section_1').hide('slow', function () {
+                    $('.section_1').hide('slow', function() {
                         $(this).attr('hidden', true);
                     });
                     $('.close_modal').remove();
                     $('.next_section').before(
                         '<button type="button" class="btn btn-warning back_section" onclick="script_create.addSection()">KEMBALI</button>'
-                        );
+                    );
                     $('.next_section').removeClass('btn-primary').addClass('btn-success simpan').text('SIMPAN')
                         .attr('onclick', 'script_create.simpan()');
 
@@ -203,33 +209,33 @@
             //   });
             // console.log($('#form_data').serialize());   
             if ($('#form_data').valid()) {
-            $.ajax({
-                url: $('#form_data').attr('action'),
-                type: $('#form_data').attr('method'),
-                data: $('#form_data').serialize(),
-                success: function(data) {
-                    if (data == 'success') {
-                        Toast.fire({
-                            icon: 'success',
-                            title: 'Berhasil Disimpan'
-                        });
-                        setTimeout(function() {
-                            $('#tambah_training').modal('toggle');
-                            window.location.reload();
-                        }, 750);
-                    } else {
-                        Toast.fire({
-                            icon: 'error',
-                            title: 'Gagal Disimpan'
-                        });
+                $.ajax({
+                    url: $('#form_data').attr('action'),
+                    type: $('#form_data').attr('method'),
+                    data: $('#form_data').serialize(),
+                    success: function(data) {
+                        if (data == 'success') {
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Berhasil Disimpan'
+                            });
+                            setTimeout(function() {
+                                $('#tambah_training').modal('toggle');
+                                window.location.reload();
+                            }, 750);
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: 'Gagal Disimpan'
+                            });
+                        }
                     }
-                }
-            });
+                });
 
             }
         }
 
-        $('#form_data').on('submit', function (e) {
+        $('#form_data').on('submit', function(e) {
             e.preventDefault();
         });
 
@@ -245,14 +251,14 @@
                 comfort: 'comfort harus diisi',
                 decision_adm_decs: 'decision adm decs harus diChoose',
             },
-            highlight: function (e) {
+            highlight: function(e) {
                 $(e).closest('.form-control').addClass('is-invalid');
             },
-            unhighlight: function (e) {
+            unhighlight: function(e) {
                 $(e).closest('.form-control').removeClass('is-invalid');
                 $(e).closest('.form-control').addClass('is-valid');
             },
-            success: function (e) {
+            success: function(e) {
                 $(e).closest('.form-control').removeClass('is-invalid');
                 $(e).closest('.form-control').addClass('is-valid');
             },
