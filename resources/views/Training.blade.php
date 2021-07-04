@@ -26,7 +26,8 @@
             <!-- Info boxes -->
             <div class="card">
                 <div class="card-header">
-                    <button class="btn btn-success tambah" data-toggle="modal" onclick="tambah()" data-target="#tambah_training"><i class="fa fa-plus-circle"></i> Tambah Data</button>
+                    <button class="btn btn-success tambah" data-toggle="modal" onclick="tambah()"
+                        data-target="#tambah_training"><i class="fa fa-plus-circle"></i> Tambah Data</button>
                 </div>
                 <div class="card-body">
                     <table id="data" class="table table-bordered table-hover">
@@ -58,12 +59,11 @@
                                 <td>{{$s->decision_adm_decs}}</td>
                                 <td>
                                     <button type="button" class="btn btn-info btn-xs edit_data" value="{{$s->id}}"
-                                        data-toggle="modal" data-target="#tambah_user" onclick="edit(this.value)"><i
+                                        data-toggle="modal" data-target="#tambah_training" onclick="edit(this.value)"><i
                                             class="fa fa-edit"></i></button>
-                                    <!--diberi angker edit-->
-                                    {{-- <a href="{{$s->id}}"><button class="btn btn-danger btn-xs"><i
-                                            class="fa fa-trash-alt"></i></button></a> --}}
-                                </>
+                                    <button type="button" class="btn btn-danger btn-xs" value="{{$s->id}}"
+                                        onclick="delet(this.value)"><i class="fa fa-trash-alt"></i></button>
+                                    </>
                             </tr>
                             @endforeach
                         </tbody>
@@ -81,28 +81,71 @@
 @endsection
 @push('content-js')
 <script>
-jQuery(document).ready(function($) {
+    jQuery(document).ready(function ($) {
 
-$('#data').DataTable({
-    "paging": true,
-    "lengthChange": false,
-    "searching": true,
-    "ordering": true,
-    "info": true,
-    "autoWidth": false,
-    "responsive": true,
-    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-  });
-
-  
-
-});
-
-function tambah () {
-    script_create();
-    $('#form_data').trigger('reset').attr('action', "{{route('Training.store')}}");
-  }
+        $('#data').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        });
 
 
+
+    });
+
+    function tambah() {
+        script_create();
+        $('#form_data').trigger('reset').attr('action', "{{route('Training.store')}}");
+    }
+
+    function edit(value) {
+        $('#form_data').trigger('reset').attr('action', "{{route('Training.update')}}");
+        $.ajax({
+            url: `{{url('/training/get_data/` + value + `')}}`,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function (data) {
+                console.log(data);
+                $('input[name=id_training]').val(data.id);
+                $('#l_core option[value=' + data.l_core + ']').attr('selected', true);
+                $('#l_surf option[value=' + data.l_surf + ']').attr('selected', true);
+                $('#l_o2 option[value=' + data.l_o2 + ']').attr('selected', true);
+                $('#l_bp option[value=' + data.l_bp + ']').attr('selected', true);
+                $('#surf_stbl option[value=' + data.surf_stbl + ']').attr('selected', true);
+                $('#core_stbl option[value=' + data.core_stbl + ']').attr('selected', true);
+                $('#bp_stbl option[value=' + data.bp_stbl + ']').attr('selected', true);
+                $('#comfort').val(data.comfort);
+                $('#decision_adm_decs option[value=' + data.decision_adm_decs + ']').attr('selected', true);
+            }
+        });
+    }
+
+    function delet(value) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        $.ajax({
+            url: `{{url('/training/delete/` + value + `')}}`,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function (data) {
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Berhasil Dihapus'
+                });
+                setTimeout(function () {
+                    window.location.reload();
+                }, 750);
+            }
+        });
+    }
 </script>
 @endpush

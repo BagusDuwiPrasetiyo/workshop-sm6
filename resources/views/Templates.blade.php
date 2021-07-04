@@ -193,8 +193,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item nav-item {{ isset($training)? $training : '' }}">
+            <a href="{{ url('training') }}" class="nav-link nav-item {{ isset($training)? $training : '' }}">
               <i class="nav-icon fas fa-database"></i>
               <p>
                 Datar Training
@@ -202,7 +202,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="{{ url('testing') }}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Data Testing
@@ -266,6 +266,10 @@
 
 <!-- SweetAlert2 -->
 <script src="{{asset('template')}}/plugins/sweetalert2/sweetalert2.min.js"></script>
+
+<!-- Jquery Validate -->
+<script src="{{asset('template')}}/plugins/jquery-validation/jquery.validate.js"></script>
+<script src="{{asset('template')}}/plugins/jquery-validation/localization/messages_id.js"></script>
 
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('template')}}/dist/js/demo.js"></script>

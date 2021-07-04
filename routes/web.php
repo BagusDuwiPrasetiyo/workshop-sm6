@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Algorithm;
 use App\Http\Controllers\Training;
+use App\Http\Controllers\Testing;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,8 +16,16 @@ use App\Http\Controllers\Training;
 */
 
 Route::resource('/', Algorithm::class);
+
+// data training
 Route::resource('/training', Training::class);
-// Route::get('/', [Home::class, 'home'])->name('home');
-Route::post('/training', [Training::class, 'store'])->name('Training.store');
+Route::get('/training/get_data/{kode}', [Training::class, 'getUserData']);
+Route::get('/training/delete/{kode}', [Training::class, 'destroy']);
+Route::post('/training/', [Training::class, 'store'])->name('Training.store');
+Route::put('/training/', [Training::class, 'update'])->name('Training.update');
+
+// data testing
+Route::resource('/testing', Testing::class);
+
 Route::post('/algorithm/upload', [Algorithm::class, 'upload']);
 Route::get('/result', [Algorithm::class, 'result']);

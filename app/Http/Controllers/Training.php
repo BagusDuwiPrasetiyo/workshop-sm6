@@ -14,8 +14,9 @@ class Training extends Controller
      */
     public function index()
     {
+        $training = 'active';
         $patient = Patient_Model::all();
-        return view('Training', compact('patient'));
+        return view('Training', compact('patient', 'training'));
     }
 
     /**
@@ -41,7 +42,7 @@ class Training extends Controller
                 'decision_adm_decs' => $request->decision_adm_decs,
             ];
 
-            $save_user = Patient_Model::create($create_training);
+            Patient_Model::create($create_training);
         } catch (Exception $e) {
 
             return $e;
@@ -81,7 +82,27 @@ class Training extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+
+            $create_training = [
+                'l_core' => $request->l_core,
+                'l_surf' => $request->l_surf,
+                'l_o2' => $request->l_o2,
+                'l_bp' => $request->l_bp,
+                'surf_stbl' => $request->surf_stbl,
+                'core_stbl' => $request->core_stbl,
+                'bp_stbl' => $request->bp_stbl,
+                'comfort' => $request->comfort,
+                'decision_adm_decs' => $request->decision_adm_decs,
+            ];
+
+            Patient_Model::where('id', $request['id_training'])->update($create_training);
+        } catch (Exception $e) {
+
+            return $e;
+        }
+
+        return 'success';
     }
 
     /**
@@ -92,6 +113,11 @@ class Training extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Patient_Model::where('id', $id)->delete();
+    }
+
+    public function getUserData($id)
+    {
+    	return Patient_Model::where('id', $id)->first();
     }
 }
