@@ -14,38 +14,22 @@
                     <div class="section_1">
                         <div class="form-group">
                             <label>L CORE</label>
-<<<<<<< Updated upstream
                             <select name="l_core" id="l_core" class="form-control select2" required
                                 style="width: 100%;">
                                 <option value="">--Choose--</option>
                                 <option value="high">HIGH > 37</option>
                                 <option value="mid">MID <= 37 and >= 36</option>
                                 <option value="low">LOW < 36</option>
-=======
-                            <select name="l_core" id="l_core" class="form-control select2" required style="width: 100%;">
-                                <option value="">--Pilih--</option>
-                                <option value="high">HIGH</option>
-                                <option value="mid">MID</option>
-                                <option value="low">LOW</option>
->>>>>>> Stashed changes
                             </select>
                         </div>
                         <div class="form-group">
                             <label>L SURF</label>
-<<<<<<< Updated upstream
                             <select name="l_surf" id="l_surf" class="form-control select2" required
                                 style="width: 100%;">
                                 <option value="">--Choose--</option>
                                 <option value="high">HIGH > 36.5 </option>
                                 <option value="mid">MID <= 36.5 and >= 35 </option>
                                 <option value="low">LOW < 35</option>
-=======
-                            <select name="l_surf" id="l_surf" class="form-control select2" required style="width: 100%;">
-                                <option value="">--Pilih--</option>
-                                <option value="high">HIGH</option>
-                                <option value="mid">MID</option>
-                                <option value="low">LOW</option>
->>>>>>> Stashed changes
                             </select>
                         </div>
                         <div class="form-group">

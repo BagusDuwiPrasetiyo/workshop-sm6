@@ -128,24 +128,11 @@
 @push('content-js')
 <script>
     $('#formData').validate({
-<<<<<<< Updated upstream
-        messages: {
-            l_core: 'l core harus diChoose',
-            l_surf: 'l surf harus diChoose',
-            l_o2: 'l o2 harus diChoose',
-            l_bp: 'l bp harus diChoose',
-            surf_stbl: 'surf stbl harus diChoose',
-            core_stbl: 'core stbl harus diChoose',
-            bp_stbl: 'bp stbl harus diChoose',
-            comfort: 'comfort harus diisi',
-            decision_adm_decs: 'decision adm decs harus diChoose',
-=======
         rules: {
             comfort: {
                 min: 1,
                 max: 20
             }
->>>>>>> Stashed changes
         },
         highlight: function(e) {
             $(e).closest('.form-control').addClass('is-invalid');
