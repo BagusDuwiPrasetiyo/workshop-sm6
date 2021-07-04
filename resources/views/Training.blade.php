@@ -27,7 +27,7 @@
             <div class="card">
                 <div class="card-header">
                     <button class="btn btn-success tambah" data-toggle="modal" onclick="tambah()"
-                        data-target="#tambah_training"><i class="fa fa-plus-circle"></i> Tambah Data</button>
+                        data-target="#tambah_training"><i class="fa fa-plus-circle"></i> Insert Data</button>
                 </div>
                 <div class="card-body">
                     <table id="data" class="table table-bordered table-hover">
@@ -42,7 +42,7 @@
                                 <th scope="col">BP STBL</th>
                                 <th scope="col">COMFORT</th>
                                 <th scope="col">DECISION ADM DECS</th>
-                                <th scope="col" style="width: 10%;">AKSI</th>
+                                <th scope="col" style="width: 10%;">ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
