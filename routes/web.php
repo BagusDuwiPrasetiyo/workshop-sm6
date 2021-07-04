@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Algorithm;
 use App\Http\Controllers\Training;
 use App\Http\Controllers\Testing;
+use App\Http\Controllers\Dashboard;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,3 +34,6 @@ Route::get('/stored_data', [Testing::class, 'saved']);
 
 Route::post('/algorithm/upload', [Algorithm::class, 'upload']);
 Route::get('/result', [Algorithm::class, 'result']);
+
+//Dashboard
+Route::resource('/', Dashboard::class);
