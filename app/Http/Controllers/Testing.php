@@ -47,4 +47,15 @@ class Testing extends Controller
 
         return 'success';
     }
+
+    public function destroy($id)
+    {
+        try {
+            History_Model::find($id)->delete();
+        } catch (Exception $e) {
+            return $e;
+        }
+
+        return 'success';
+    }
 }

@@ -36,8 +36,10 @@
                                 <th scope="col">CORE STBL</th>
                                 <th scope="col">BP STBL</th>
                                 <th scope="col">COMFORT</th>
-                                <th scope="col">DECISION ADM DECS</th>
-                                <th scope="col" style="width: 10%;">AKSI</th>
+                                <th scope="col">RESULT A</th>
+                                <th scope="col">RESULT S</th>
+                                <th scope="col">RESULT</th>
+                                <th scope="col" style="width: 10%;">ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,11 +53,12 @@
                                 <td>{{$s->core_stbl}}</td>
                                 <td>{{$s->bp_stbl}}</td>
                                 <td>{{$s->comfort}}</td>
-                                <td>{{$s->decision_adm_decs}}</td>
+                                <td>{{$s->result_a}}</td>
+                                <td>{{$s->result_s}}</td>
+                                <td>{{$s->result}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-info btn-xs edit_data" value="{{$s->id}}" data-toggle="modal" data-target="#tambah_training" onclick="edit(this.value)"><i class="fa fa-edit"></i></button>
-                                    <button type="button" class="btn btn-danger btn-xs" value="{{$s->id}}" onclick="delet(this.value)"><i class="fa fa-trash-alt"></i></button>
-                                    </>
+                                    <button type="button" class="btn btn-danger btn-xs" value="{{$s->id}}" onclick="deleteData(this.value)"><i class="fa fa-trash-alt"></i></button>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -83,54 +86,31 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         });
 
 
 
     });
 
-    function edit(value) {
-        $('#form_data').trigger('reset').attr('action', "{{route('Training.update')}}");
+    function deleteData(value) {
         $.ajax({
-            url: `{{url('/training/get_data/` + value + `')}}`,
+            url: `{{url('/stored_data/delete/` + value + `')}}`,
             type: 'GET',
-            dataType: 'JSON',
             success: function(data) {
-                console.log(data);
-                $('input[name=id_training]').val(data.id);
-                $('#l_core option[value=' + data.l_core + ']').attr('selected', true);
-                $('#l_surf option[value=' + data.l_surf + ']').attr('selected', true);
-                $('#l_o2 option[value=' + data.l_o2 + ']').attr('selected', true);
-                $('#l_bp option[value=' + data.l_bp + ']').attr('selected', true);
-                $('#surf_stbl option[value=' + data.surf_stbl + ']').attr('selected', true);
-                $('#core_stbl option[value=' + data.core_stbl + ']').attr('selected', true);
-                $('#bp_stbl option[value=' + data.bp_stbl + ']').attr('selected', true);
-                $('#comfort').val(data.comfort);
-                $('#decision_adm_decs option[value=' + data.decision_adm_decs + ']').attr('selected', true);
-            }
-        });
-    }
-
-    function delet(value) {
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000
-        });
-        $.ajax({
-            url: `{{url('/training/delete/` + value + `')}}`,
-            type: 'GET',
-            dataType: 'JSON',
-            success: function(data) {
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Berhasil Dihapus'
-                });
-                setTimeout(function() {
-                    window.location.reload();
-                }, 750);
+                if (data == 'success') {
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Berhasil Disimpan'
+                    });
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 750);
+                } else {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Gagal Disimpan'
+                    });
+                }
             }
         });
     }

@@ -206,7 +206,7 @@
                         title: 'Berhasil Disimpan'
                     });
                     setTimeout(function() {
-                        window.location.reload();
+                        window.location.href = "{{url('/stored_data')}}";
                     }, 750);
                 } else {
                     Toast.fire({

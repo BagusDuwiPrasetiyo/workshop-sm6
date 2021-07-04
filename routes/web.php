@@ -31,6 +31,7 @@ Route::post('/testing', [Testing::class, 'store'])->name('Testing.store');
 
 //saved testing
 Route::get('/stored_data', [Testing::class, 'saved']);
+Route::get('/stored_data/delete/{id}', [Testing::class, 'destroy']);
 
 Route::post('/algorithm/upload', [Algorithm::class, 'upload']);
 Route::get('/result', [Algorithm::class, 'result']);
