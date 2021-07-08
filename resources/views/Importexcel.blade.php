@@ -13,17 +13,17 @@
                     <div class="form-group">
                         <label>Upload File Excel</label>
                         <div class="custom-file">
-                            <input type="file" class="form-control" name="customFile" id="customFile"
+                            <input type="file" class="form-control custom-file-input" name="customFile" id="customFile"
                                 required>
                             <label class="custom-file-label" for="customFile">Choose file</label>
                         </div>
                     </div>
                 </div>
+            </form>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-danger close_modal" data-dismiss="modal">BATAL</button>
-                <button type="submit" class="btn btn-primary next_section">UPLOAD</button>
+                <button type="button" class="btn btn-primary next_section" onclick="excelsubmit()">UPLOAD</button>
             </div>
-            </form>
         </div>
         <!-- /.modal-content -->
     </div>

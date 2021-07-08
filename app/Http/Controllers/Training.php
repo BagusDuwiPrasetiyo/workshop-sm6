@@ -125,25 +125,25 @@ class Training extends Controller
 
     public function import_excel(Request $request) 
 {
-    return $request;
     
     // // validasi
-	// $this->validate($request, [
-        // 	'customFile' => 'required|mimes:csv,xls,xlsx'
-        // ]);
+	$this->validate($request, [
+        	'customFile' => 'required|mimes:csv,xls,xlsx'
+        ]);
         
-        // // menangkap file excel
-    //     $file = $request->file('customFile');
+        // menangkap file excel
+        $file = $request->file('customFile');
        
 
-	// // membuat nama file unik
-	// $nama_file = rand().$file->getClientOriginalName();
+	// membuat nama file unik
+	$nama_file = rand().$file->getClientOriginalName();
+    
 
-	// // upload ke folder file_siswa di dalam folder public
-	// $file->move('file_patient',$nama_file);
+	// upload ke folder file_siswa di dalam folder public
+	$file->move('file_patient',$nama_file);
 
-	// // import data
-	// Excel::import(new PatientImport, public_path('/file_siswa/'.$nama_file));
+	// import data
+	Excel::import(new PatientImport, public_path('/file_patient/'.$nama_file));
 
 
 }
