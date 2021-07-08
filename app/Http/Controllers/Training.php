@@ -120,7 +120,7 @@ class Training extends Controller
 
     public function getUserData($id)
     {
-    	return Patient_Model::where('id', $id)->first();
+        return Patient_Model::where('id', $id)->first();
     }
 
     public function import_excel(Request $request) 
@@ -146,5 +146,7 @@ class Training extends Controller
 	Excel::import(new PatientImport, public_path('/file_patient/'.$nama_file));
 
 
-}
+        // import data
+    Excel::import(new PatientImport, $file);
+    }
 }

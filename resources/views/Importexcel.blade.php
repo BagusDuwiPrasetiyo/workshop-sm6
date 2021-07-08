@@ -30,7 +30,7 @@
     <!-- /.modal-dialog -->
 </div>
 @push('content-js')
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/additional-methods.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/additional-methods.js"></script>
 <script>
    
 
@@ -38,5 +38,5 @@
         $("#excel").submit();
     }
 
-</script>
+</script> -->
 @endpush
