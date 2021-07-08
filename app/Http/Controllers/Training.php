@@ -120,31 +120,22 @@ class Training extends Controller
 
     public function getUserData($id)
     {
-    	return Patient_Model::where('id', $id)->first();
+        return Patient_Model::where('id', $id)->first();
     }
 
-    public function import_excel(Request $request) 
-{
-    return $request;
-    
-    // // validasi
-	// $this->validate($request, [
-        // 	'customFile' => 'required|mimes:csv,xls,xlsx'
-        // ]);
-        
-        // // menangkap file excel
-    //     $file = $request->file('customFile');
-       
+    public function import_excel(Request $request)
+    {
 
-	// // membuat nama file unik
-	// $nama_file = rand().$file->getClientOriginalName();
+        // validasi
+        $this->validate($request, [
+            'customFile' => 'required|mimes:csv,xls,xlsx'
+        ]);
 
-	// // upload ke folder file_siswa di dalam folder public
-	// $file->move('file_patient',$nama_file);
-
-	// // import data
-	// Excel::import(new PatientImport, public_path('/file_siswa/'.$nama_file));
+        // menangkap file excel
+        $file = $request->file('customFile');
 
 
-}
+        // import data
+        Excel::import(new PatientImport, $file);
+    }
 }

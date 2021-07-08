@@ -13,16 +13,15 @@
                     <div class="form-group">
                         <label>Upload File Excel</label>
                         <div class="custom-file">
-                            <input type="file" class="form-control" name="customFile" id="customFile"
-                                required>
-                            <label class="custom-file-label" for="customFile">Choose file</label>
+                            <!-- <label class="custom-file-label" for="customFile">Choose file</label> -->
+                            <input type="file" class="form-control" name="customFile" id="customFile" required>
                         </div>
                     </div>
                 </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-danger close_modal" data-dismiss="modal">BATAL</button>
-                <button type="submit" class="btn btn-primary next_section">UPLOAD</button>
-            </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-danger close_modal" data-dismiss="modal">BATAL</button>
+                    <button type="submit" class="btn btn-primary next_section">UPLOAD</button>
+                </div>
             </form>
         </div>
         <!-- /.modal-content -->
@@ -30,7 +29,7 @@
     <!-- /.modal-dialog -->
 </div>
 @push('content-js')
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/additional-methods.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/additional-methods.js"></script>
 <script>
    
 
@@ -38,5 +37,5 @@
         $("#excel").submit();
     }
 
-</script>
+</script> -->
 @endpush
