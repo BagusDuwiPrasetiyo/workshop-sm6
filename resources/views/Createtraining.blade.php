@@ -104,6 +104,7 @@
     <!-- /.modal-dialog -->
 </div>
 @push('content-js')
+
 <script>
     $('#comfort').on('keyup', function() {
         var regex = /^[0-9]+$/;

@@ -23,6 +23,7 @@ Route::resource('/training', Training::class);
 Route::get('/training/get_data/{kode}', [Training::class, 'getUserData']);
 Route::get('/training/delete/{kode}', [Training::class, 'destroy']);
 Route::post('/training', [Training::class, 'store'])->name('Training.store');
+Route::post('/trainingexcel', [Training::class, 'import_excel']);
 Route::put('/training', [Training::class, 'update'])->name('Training.update');
 
 //data testing

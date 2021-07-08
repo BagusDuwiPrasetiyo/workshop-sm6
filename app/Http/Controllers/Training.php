@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Patient_Model;
+use App\Imports\PatientImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Training extends Controller
 {
@@ -120,4 +122,29 @@ class Training extends Controller
     {
     	return Patient_Model::where('id', $id)->first();
     }
+
+    public function import_excel(Request $request) 
+{
+    return $request;
+    
+    // // validasi
+	// $this->validate($request, [
+        // 	'customFile' => 'required|mimes:csv,xls,xlsx'
+        // ]);
+        
+        // // menangkap file excel
+    //     $file = $request->file('customFile');
+       
+
+	// // membuat nama file unik
+	// $nama_file = rand().$file->getClientOriginalName();
+
+	// // upload ke folder file_siswa di dalam folder public
+	// $file->move('file_patient',$nama_file);
+
+	// // import data
+	// Excel::import(new PatientImport, public_path('/file_siswa/'.$nama_file));
+
+
+}
 }

@@ -1,6 +1,7 @@
 @extends('Templates')
 @section('content')
 @include('Createtraining')
+@include('Importexcel')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -28,6 +29,7 @@
                 <div class="card-header">
                     <button class="btn btn-success tambah" data-toggle="modal" onclick="tambah()"
                         data-target="#tambah_training"><i class="fa fa-plus-circle"></i> Insert Data</button>
+                        <button class="btn btn-warning tambah float-right" data-toggle="modal" data-target="#import_excel" onclick="excel()"><i class="fa fa-plus-circle"></i> Import Excel</button>
                 </div>
                 <div class="card-body">
                     <table id="data" class="table table-bordered table-hover">
@@ -101,6 +103,10 @@
     function tambah() {
         script_create();
         $('#form_data').trigger('reset').attr('action', "{{route('Training.store')}}");
+    }
+
+    function excel() {
+        $('#excel').trigger("reset");
     }
 
     function edit(value) {
