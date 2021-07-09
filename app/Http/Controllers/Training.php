@@ -125,6 +125,7 @@ class Training extends Controller
 
     public function import_excel(Request $request) 
 {
+    try{
     
     // // validasi
 	$this->validate($request, [
@@ -134,19 +135,15 @@ class Training extends Controller
         // menangkap file excel
         $file = $request->file('customFile');
        
-
-	// membuat nama file unik
-	$nama_file = rand().$file->getClientOriginalName();
-    
-
-	// upload ke folder file_siswa di dalam folder public
-	$file->move('file_patient',$nama_file);
-
-	// import data
-	Excel::import(new PatientImport, public_path('/file_patient/'.$nama_file));
-
-
         // import data
     Excel::import(new PatientImport, $file);
+
+} catch (Exception $e) {
+
+    // return redirect('/training')->with(['success' => 'Pesan Berhasil']);
+    return $e;
+}
+//  return 'success';
+return redirect('/training')->with(['success' => 'Pesan Berhasil']);
     }
 }

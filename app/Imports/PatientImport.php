@@ -14,6 +14,7 @@ class PatientImport implements ToModel
      */
     public function model(array $row)
     {
+        try{
         return new Patient_Model([
             'l_core' => $row[0],
             'l_surf' => $row[1], 
@@ -25,5 +26,9 @@ class PatientImport implements ToModel
             'comfort' => $row[7], 
             'decision_adm_decs' => $row[8], 
         ]);
+    } catch (Exception $e) {
+
+        return $e;
+    }
     }
 }

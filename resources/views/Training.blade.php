@@ -27,8 +27,10 @@
             <!-- Info boxes -->
             <div class="card">
                 <div class="card-header">
-                    <button class="btn btn-success tambah" data-toggle="modal" onclick="tambah()" data-target="#tambah_training"><i class="fa fa-plus-circle"></i> Insert Data</button>
-                    <button class="btn btn-warning tambah float-right" data-toggle="modal" data-target="#import_excel" onclick="excel()"><i class="fa fa-plus-circle"></i> Import Excel</button>
+                    <button class="btn btn-success tambah" data-toggle="modal" onclick="tambah()"
+                        data-target="#tambah_training"><i class="fa fa-plus-circle"></i> Insert Data</button>
+                    <button class="btn btn-warning tambah float-right" data-toggle="modal"
+                        data-target="#import_excel"><i class="fa fa-plus-circle"></i> Import Excel</button>
                 </div>
                 <div class="card-body">
                     <table id="data" class="table table-bordered table-hover">
@@ -59,8 +61,11 @@
                                 <td>{{$s->comfort}}</td>
                                 <td>{{$s->decision_adm_decs}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-info btn-xs edit_data" value="{{$s->id}}" data-toggle="modal" data-target="#tambah_training" onclick="edit(this.value)"><i class="fa fa-edit"></i></button>
-                                    <button type="button" class="btn btn-danger btn-xs" value="{{$s->id}}" onclick="delet(this.value)"><i class="fa fa-trash-alt"></i></button>
+                                    <button type="button" class="btn btn-info btn-xs edit_data" value="{{$s->id}}"
+                                        data-toggle="modal" data-target="#tambah_training" onclick="edit(this.value)"><i
+                                            class="fa fa-edit"></i></button>
+                                    <button type="button" class="btn btn-danger btn-xs" value="{{$s->id}}"
+                                        onclick="delet(this.value)"><i class="fa fa-trash-alt"></i></button>
                                     </>
                             </tr>
                             @endforeach
@@ -79,7 +84,20 @@
 @endsection
 @push('content-js')
 <script>
-    jQuery(document).ready(function($) {
+    jQuery(document).ready(function ($) {
+        if ("{{($message = Session::get('success'))}}") {
+        Toast.fire({
+                    icon: 'success',
+                    title: 'Data Excel Berhasil Ditambahkan'
+                });
+        }
+
+        if ("{{($message = Session::get('error'))}}") {
+            Toast.fire({
+                                icon: 'error',
+                                title: 'Data Excel Gagal Ditambahkan'
+                            });
+        }
 
         $('#data').DataTable({
             "paging": true,
@@ -111,7 +129,7 @@
             url: `{{url('/training/get_data/` + value + `')}}`,
             type: 'GET',
             dataType: 'JSON',
-            success: function(data) {
+            success: function (data) {
                 console.log(data);
                 $('input[name=id_training]').val(data.id);
                 $('#l_core option[value=' + data.l_core + ']').attr('selected', true);
@@ -138,12 +156,12 @@
             url: `{{url('/training/delete/` + value + `')}}`,
             type: 'GET',
             dataType: 'JSON',
-            success: function(data) {
+            success: function (data) {
                 Toast.fire({
                     icon: 'success',
                     title: 'Berhasil Dihapus'
                 });
-                setTimeout(function() {
+                setTimeout(function () {
                     window.location.reload();
                 }, 750);
             }

@@ -30,13 +30,15 @@
     <!-- /.modal-dialog -->
 </div>
 @push('content-js')
-<!-- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/additional-methods.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/additional-methods.js"></script> -->
 <script>
    
-
+   $(function () {
+  bsCustomFileInput.init();
+});
     function excelsubmit() {
         $("#excel").submit();
     }
 
-</script> -->
+</script>
 @endpush
