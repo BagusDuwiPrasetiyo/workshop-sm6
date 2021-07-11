@@ -27,6 +27,13 @@
             <!-- Info boxes -->
             <div class="card">
                 <div class="card-header">
+                @if ($message = Session::get('error'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h5><i class="icon fas fa-ban"></i> Kesalahan!</h5>
+                        {{ $message }}
+                    </div>
+                    @endif
                     <button class="btn btn-success tambah" data-toggle="modal" onclick="tambah()"
                         data-target="#tambah_training"><i class="fa fa-plus-circle"></i> Insert Data</button>
                     <button class="btn btn-warning tambah float-right" data-toggle="modal"
@@ -85,18 +92,11 @@
 @push('content-js')
 <script>
     jQuery(document).ready(function ($) {
-        if ("{{($message = Session::get('success'))}}") {
-        Toast.fire({
-                    icon: 'success',
-                    title: 'Data Excel Berhasil Ditambahkan'
-                });
-        }
-
-        if ("{{($message = Session::get('error'))}}") {
+        if ("{{$message = Session::get('success')}}") {
             Toast.fire({
-                                icon: 'error',
-                                title: 'Data Excel Gagal Ditambahkan'
-                            });
+                icon: 'success',
+                title: 'Data Excel Berhasil Ditambahkan'
+            });
         }
 
         $('#data').DataTable({

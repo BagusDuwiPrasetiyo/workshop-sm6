@@ -37,8 +37,11 @@
   bsCustomFileInput.init();
 });
     function excelsubmit() {
+      
         $("#excel").submit();
+        
     }
+
 
 </script>
 @endpush
