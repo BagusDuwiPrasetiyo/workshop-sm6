@@ -139,11 +139,14 @@ class Algorithm extends Controller
         $Prob_comfortS = $comfortS / $countS;
 
         //TOTAL PROBABILITAS A
-        $totalA = $ProbA * $Prob_lcoreA * $Prob_lsurfA * $Prob_lo2A * $Prob_lbpA * $Prob_surf_stblA * $Prob_core_stblA * $Prob_bp_stblA * $Prob_comfortA;
+        $roundA = $ProbA * $Prob_lcoreA * $Prob_lsurfA * $Prob_lo2A * $Prob_lbpA * $Prob_surf_stblA * $Prob_core_stblA * $Prob_bp_stblA * $Prob_comfortA;
 
         //TOTAL PROBABILITAS S
-        $totalS = $ProbS * $Prob_lcoreS * $Prob_lsurfS * $Prob_lo2S * $Prob_lbpS * $Prob_surf_stblS * $Prob_core_stblS * $Prob_bp_stblS * $Prob_comfortS;
+        $roundS = $ProbS * $Prob_lcoreS * $Prob_lsurfS * $Prob_lo2S * $Prob_lbpS * $Prob_surf_stblS * $Prob_core_stblS * $Prob_bp_stblS * $Prob_comfortS;
 
+        $totalA = round($roundA, 4);
+
+        $totalS = round($roundS, 4);
 
         if ($totalA > $totalS) {
             $result = "A";
