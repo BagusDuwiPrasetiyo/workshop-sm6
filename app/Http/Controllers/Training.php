@@ -125,16 +125,7 @@ class Training extends Controller
 
     public function import_excel(Request $request) 
 {
-    try{
-    $messages = [
-        'required' => ':attribute wajib diisi cuy!!!',
-        'mimes' => 'file harus berformat csv xls xlsxssss'
-    ];
-    
-    // // validasi
-	$this->validate($request, [
-        	'customFile' => 'required|mimes:csv,xls,xlsx'
-        ],$messages);
+    try{    
         
         // menangkap file excel
         $file = $request->file('customFile');
@@ -142,7 +133,8 @@ class Training extends Controller
         // import data
     Excel::import(new PatientImport, $file);
 } catch(\Illuminate\Database\QueryException $ex){ 
-    return redirect('/training')->with(['error' => 'harap periksa isi excel yang di upload']);
+    // return redirect('/training')->with(['error' => 'Please check the uploaded excel content']);
+    return redirect('/training')->with(['error' => 'Please check the uploaded excel content']);
     // Note any method of class PDOException can be called on $ex.
   }
 

@@ -11,14 +11,15 @@ class Testing extends Controller
     public function index()
     {
         $patient = Patient_Model::all();
-        // return $patient;
-        return view('Testing', compact('patient'));
+        $testing = 'active';
+        return view('Testing', compact('patient', 'testing'));
     }
 
     public function saved()
     {
         $saved = History_Model::all();
-        return view('Saved', compact('saved'));
+        $stored_data = 'active';
+        return view('Saved', compact('saved', 'stored_data'));
     }
 
     public function store(Request $request)

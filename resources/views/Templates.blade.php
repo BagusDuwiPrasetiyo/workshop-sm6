@@ -129,8 +129,8 @@
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-              <li class="nav-item">
-                <a href="{{ url('dashboard') }}" class="nav-link">
+              <li class="nav-item nav-item {{ isset($dashboard)? $dashboard : '' }}">
+                <a href="{{ url('/') }}" class="nav-link nav-item {{ isset($dashboard)? $dashboard : '' }}">
                   <i class="nav-icon fas fa-home"></i>
                   <p>
                     Dashboard
@@ -145,16 +145,16 @@
                 </p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="{{ url('testing') }}" class="nav-link">
+            <li class="nav-item nav-item {{ isset($testing)? $testing : '' }}">
+              <a href="{{ url('testing') }}" class="nav-link nav-item {{ isset($testing)? $testing : '' }}">
                 <i class="nav-icon fas fa-table"></i>
                 <p>
                   Data Testing
                 </p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="{{ url('stored_data') }}" class="nav-link">
+            <li class="nav-item nav-item {{ isset($stored_data)? $stored_data : '' }}">
+                <a href="{{ url('stored_data') }}" class="nav-link nav-item {{ isset($stored_data)? $stored_data : '' }}">
                 <i class="nav-icon fas fa-history"></i>
                 <p>
                   Stored Test Data

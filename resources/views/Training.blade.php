@@ -27,17 +27,18 @@
             <!-- Info boxes -->
             <div class="card">
                 <div class="card-header">
-                @if ($message = Session::get('error'))
+                <!-- @if ($message = Session::get('error'))
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-ban"></i> Kesalahan!</h5>
                         {{ $message }}
                     </div>
-                    @endif
+                    @endif -->
                     <button class="btn btn-success tambah" data-toggle="modal" onclick="tambah()"
                         data-target="#tambah_training"><i class="fa fa-plus-circle"></i> Insert Data</button>
-                    <button class="btn btn-warning tambah float-right" data-toggle="modal"
+                        <button class="btn btn-warning ml-2 tambah float-right" data-toggle="modal"
                         data-target="#import_excel"><i class="fa fa-plus-circle"></i> Import Excel</button>
+                        <button class="btn btn-info float-right" data-toggle="modal" data-target="#example_excel"><i class="fa fa-plus-circle"></i> Example Excel</button>
                 </div>
                 <div class="card-body">
                     <table id="data" class="table table-bordered table-hover">
@@ -86,6 +87,7 @@
             <!--/. container-fluid -->
     </section>
 
+    
 
 </div>
 @endsection
@@ -95,7 +97,14 @@
         if ("{{$message = Session::get('success')}}") {
             Toast.fire({
                 icon: 'success',
-                title: 'Data Excel Berhasil Ditambahkan'
+                title: 'Excel Data Added Successfully'
+            });
+        }
+
+        if ("{{$message = Session::get('error')}}") {
+            Toast.fire({
+                icon: 'error',
+                title: 'Please check the uploaded excel content'
             });
         }
 
